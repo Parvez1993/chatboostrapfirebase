@@ -8,11 +8,24 @@ body {
 }
 
 .secondary {
-  background: #ffb20a !important;
+  background: rgb(0, 102, 255);
+  background: radial-gradient(
+    circle,
+    rgba(0, 102, 255, 1) 0%,
+    rgba(191, 199, 208, 1) 84%
+  );
 }
 
 .third {
   background: #211f20 !important;
+}
+
+.fourth {
+  background: #1d1758 !important;
+}
+
+.sixth {
+  background: rgb(131, 4, 148);
 }
 
 /* //remove padding */
@@ -23,4 +36,13 @@ body {
 
 .error {
   background: "red" !important;
+}
+
+/* profilePic */
+
+.profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
