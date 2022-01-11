@@ -1,0 +1,79 @@
+/* ///////col1 image//////////////// */
+
+.banner_col1 {
+  background-image: url("../../images/login.jpg");
+  width: 50%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+/* //filter of image 1 */
+
+.myfilter img {
+  filter: brightness(0.39);
+}
+
+.myfilter {
+  position: relative;
+}
+
+.myfilter img {
+  filter: blur(1.41px) brightness(0.68);
+}
+
+.myfilter {
+  position: relative;
+}
+
+.myfilter:after {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background: rgba(251, 19, 149, 0.4);
+
+  mix-blend-mode: overlay;
+}
+
+/* ///////////col1//////// */
+.banner_col2 {
+  background-image: url("../../images/registration.png");
+  width: 50%;
+  height: 100vh;
+  background-size: cover;
+  background-position: 50% 30%;
+}
+
+.myfilter2 img {
+  filter: blur(1.41px) brightness(0.67);
+}
+
+.myfilter2 {
+  position: relative;
+}
+
+.myfilter2:after {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background: rgba(251, 215, 19, 0.77);
+
+  mix-blend-mode: overlay;
+}
+
+/* ////position */
+
+.position {
+  position: absolute;
+  top: 20%;
+  left: 20px;
+  transform: translate(10%, 50%);
+}
