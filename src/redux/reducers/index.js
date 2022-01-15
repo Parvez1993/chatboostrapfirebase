@@ -28,6 +28,26 @@ const user_reducer = (state = initialState, action) => {
         ...state,
         photoURL: action.payload.photoURL,
       };
+    case actionTypes.REMOVE_USERPIC:
+      return {
+        ...state,
+        photoURL: "",
+      };
+    default:
+      return state;
+  }
+};
+
+const groupinitialState = {
+  currentGroup: null,
+};
+const group_reducer = (state = groupinitialState, action) => {
+  switch (action.type) {
+    case actionTypes.SET_CURRENT_GROUP:
+      return {
+        ...state,
+        currentGroup: action.payload.currentGroup,
+      };
     default:
       return state;
   }
@@ -35,4 +55,5 @@ const user_reducer = (state = initialState, action) => {
 
 export const rootReducer = combineReducers({
   user: user_reducer,
+  group: group_reducer,
 });

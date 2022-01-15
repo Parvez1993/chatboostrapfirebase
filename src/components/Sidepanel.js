@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Image } from "react-bootstrap";
+import Groups from "./Groups";
 import UserPanel from "./UserPanel";
 
 export class Sidepanel extends Component {
@@ -13,8 +14,9 @@ export class Sidepanel extends Component {
             alt={this.props.user.displayName}
           />
         </div>
-        <div className="d-flex justify-content-center mt-3">
+        <div>
           <UserPanel user={this.props.user} />
+          <Groups user={this.props.user} />
         </div>
       </>
     );

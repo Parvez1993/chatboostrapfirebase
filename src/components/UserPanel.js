@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 import { connect } from "react-redux";
 import { auth } from "../firebase";
-import { removeUser } from "../redux/action";
+import { removeUser, removeUserPic } from "../redux/action";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import {
   getStorage,
@@ -71,7 +71,7 @@ class UserPanel extends Component {
         }
       );
     } else {
-      console.log("file nai");
+      this.setState({ err: "No image selected" });
     }
   };
 
@@ -79,6 +79,9 @@ class UserPanel extends Component {
     signOut(auth)
       .then(() => {
         this.props.removeUser();
+      })
+      .then(() => {
+        this.props.removeUserPic();
       })
       .catch((error) => {
         this.setState({ err: error });
@@ -89,17 +92,22 @@ class UserPanel extends Component {
     return (
       <>
         {this.state.err ? <Alert>{this.state.err}</Alert> : ""}
-        <DropdownButton
-          id="dropdown-basic-button"
-          title="Profile"
-          variant="warning"
-        >
-          <Dropdown.Item disabled>Action</Dropdown.Item>
-          <Dropdown.Item onClick={this.handlelogout}>Logout</Dropdown.Item>
-          <Dropdown.Item onClick={this.handleShow}>
-            Change Profile Pic
-          </Dropdown.Item>
-        </DropdownButton>
+        <div className="d-flex justify-content-center mt-3">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title="Profile"
+            variant="warning"
+          >
+            <Dropdown.Item disabled>
+              {this.props.user.displayName}
+            </Dropdown.Item>
+            <Dropdown.Item onClick={this.handlelogout}>Logout</Dropdown.Item>
+            <Dropdown.Item onClick={this.handleShow}>
+              Change Profile Pic
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
+
         {/* //modal */}
 
         <Modal
@@ -140,4 +148,4 @@ class UserPanel extends Component {
   }
 }
 
-export default connect(null, { removeUser })(UserPanel);
+export default connect(null, { removeUser, removeUserPic })(UserPanel);

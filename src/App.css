@@ -46,3 +46,23 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+
+/* add hover style on ad */
+
+.addHover {
+  transition: color 0.8s ease-in-out;
+}
+.addHover:hover,
+.addHover:active {
+  color: #ffca2c;
+}
+
+/* //list-groupActive */
+
+.menu_item:hover {
+  background: #ffca2c !important;
+  cursor: pointer;
+}
+.menu_item .active {
+  background: #211f20 !important;
+}

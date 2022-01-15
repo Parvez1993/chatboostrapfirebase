@@ -22,11 +22,13 @@ class Dashboard extends Component {
 
         //get values from the database
         const db = getDatabase();
-        const groupRef = ref(db, "users");
+        const groupRef = ref(db, `users/${user.uid}`);
         onValue(groupRef, (snapshot) => {
-          snapshot.forEach((item) => {
-            this.props.setUserPic(item.val().photoURL);
-          });
+          // snapshot.forEach((item) => {
+          //   // this.props.setUserPic(item.val().photoURL);
+          //   console.log(item);
+          // });
+          this.props.setUserPic(snapshot.val().photoURL);
         });
       } else {
         this.props.removeUser();
@@ -49,7 +51,11 @@ class Dashboard extends Component {
                 <Sidepanel user={this.props.user} photo={this.props.photoURL} />
               </Col>
               <Col md={7} className="secondary">
-                <Message />
+                <Message
+                  group={this.props.group}
+                  user={this.props.user}
+                  photo={this.props.photoURL}
+                />
               </Col>
               <Col md={2} className="fourth">
                 <MetaPanel />
@@ -66,6 +72,7 @@ const mapStateToProps = (state) => ({
   isLoading: state.user.isLoading,
   user: state.user.currentUser,
   photoURL: state.user.photoURL,
+  group: state.group.currentGroup,
 });
 
 const mapDispatchToProps = {

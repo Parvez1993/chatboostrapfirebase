@@ -23,3 +23,18 @@ export const setUserPic = (photo) => {
     },
   };
 };
+
+export const removeUserPic = () => {
+  return {
+    type: actionTypes.REMOVE_USERPIC,
+  };
+};
+
+export const setGroup = (group) => {
+  return {
+    type: actionTypes.SET_CURRENT_GROUP,
+    payload: {
+      currentGroup: group,
+    },
+  };
+};

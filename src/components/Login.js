@@ -10,6 +10,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { getDatabase, set, ref } from "firebase/database";
 export default class Login extends Component {
   state = {
     email: "",
@@ -50,7 +51,13 @@ export default class Login extends Component {
         const token = credential?.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log({ credential, token, user });
+        // console.log({ credential, token, user });
+
+        const db = getDatabase();
+        set(ref(db, "users/" + user.uid), {
+          username: user.displayName,
+          photoURL: user.photoURL,
+        });
 
         this.setState({ redirect: true });
       })
@@ -64,6 +71,14 @@ export default class Login extends Component {
         const credential = GoogleAuthProvider.credentialFromError(error);
         console.log({ errorCode, errorMessage, email, credential });
       });
+  };
+
+  writeUserData = (user) => {
+    const db = getDatabase();
+    set(ref(db, "users/" + user.user.uid), {
+      username: user.user.displayName,
+      photoURL: user.user.photoURL,
+    });
   };
 
   componentDidUpdate() {
