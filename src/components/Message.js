@@ -79,6 +79,7 @@ export class Message extends Component {
             group={this.props.group}
             user={this.props.user}
             photo={this.props.photo}
+            friend={this.props.friend}
           />
         </ListGroup.Item>
       </ListGroup>
@@ -93,3 +94,31 @@ let right = {
   background: "pink",
 };
 export default Message;
+
+// : i.group === this.props.friend.id ? (
+//   <div>
+//     <ListGroup>
+//       <ListGroup.Item
+//         as="li"
+//         className="d-flex justify-content-between align-items-start"
+//         style={i.sender === this.props.user.uid ? left : right}
+//       >
+//         <div className="ms-2 me-auto">
+//           <div className="fw-bold"> {i.message}</div>
+//           Sent by: {i.username} {moment(i.date).fromNow()}
+//         </div>
+//         <Image
+//           src={i.photoURL}
+//           alt="pro_pic"
+//           style={{
+//             height: "30px",
+//             width: "30px",
+//             borderRadius: "50%",
+//           }}
+//         />
+//       </ListGroup.Item>
+//     </ListGroup>
+//   </div>
+// ) : (
+//   ""
+// )

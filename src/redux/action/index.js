@@ -38,3 +38,12 @@ export const setGroup = (group) => {
     },
   };
 };
+
+export const setFriend = (friend) => {
+  return {
+    type: actionTypes.SET_CURRENT_FRIEND,
+    payload: {
+      currentFriend: friend,
+    },
+  };
+};

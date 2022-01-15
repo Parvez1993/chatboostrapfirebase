@@ -81,7 +81,6 @@ export class Groups extends Component {
 
   initialGroup = () => {
     let firstGroup = this.state.groups[0];
-    console.log(firstGroup);
     if (this.state.firstLoad && this.state.groups.length > 0) {
       this.props.setGroup(firstGroup);
       //set active id

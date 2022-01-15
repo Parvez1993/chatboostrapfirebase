@@ -55,6 +55,7 @@ class Dashboard extends Component {
                   group={this.props.group}
                   user={this.props.user}
                   photo={this.props.photoURL}
+                  friend={this.props.friend}
                 />
               </Col>
               <Col md={2} className="fourth">
@@ -73,6 +74,7 @@ const mapStateToProps = (state) => ({
   user: state.user.currentUser,
   photoURL: state.user.photoURL,
   group: state.group.currentGroup,
+  friend: state.friend.currentFriend,
 });
 
 const mapDispatchToProps = {

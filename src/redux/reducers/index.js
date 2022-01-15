@@ -53,7 +53,20 @@ const group_reducer = (state = groupinitialState, action) => {
   }
 };
 
+const friend_reducer = (state = groupinitialState, action) => {
+  switch (action.type) {
+    case actionTypes.SET_CURRENT_FRIEND:
+      return {
+        ...state,
+        currentFriend: action.payload.currentFriend,
+      };
+    default:
+      return state;
+  }
+};
+
 export const rootReducer = combineReducers({
   user: user_reducer,
   group: group_reducer,
+  friend: friend_reducer,
 });

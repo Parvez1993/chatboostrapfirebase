@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Image } from "react-bootstrap";
 import Groups from "./Groups";
 import UserPanel from "./UserPanel";
-
+import Friends from "./Friends.js";
 export class Sidepanel extends Component {
   render() {
     return (
@@ -17,6 +17,7 @@ export class Sidepanel extends Component {
         <div>
           <UserPanel user={this.props.user} />
           <Groups user={this.props.user} />
+          <Friends user={this.props.user} />
         </div>
       </>
     );
