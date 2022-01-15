@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Modal, Alert, ListGroup } from "react-bootstrap";
+import { Button, Modal, Alert, ListGroup, Form } from "react-bootstrap";
 import { PlusCircleFill } from "react-bootstrap-icons";
 import { getDatabase, ref, push, set, onValue } from "firebase/database";
 import { connect } from "react-redux";
@@ -14,6 +14,9 @@ export class Groups extends Component {
     click: false,
     active: "",
     firstLoad: true,
+    searchTerm: "",
+    searchLoading: "",
+    searchResults: [],
   };
 
   //   modal handle
@@ -96,8 +99,30 @@ export class Groups extends Component {
   alertClicked = () => {
     this.setState({ click: !this.state.click });
   };
+
+  //handleSearch
+  handleSearchTerm = (e) => {
+    this.setState({ searchTerm: e.target.value, searchLoading: true }, () =>
+      this.handleSearch()
+    );
+  };
+
+  handleSearch = () => {
+    const groups = [...this.state.groups];
+
+    const regex = new RegExp(this.state.searchTerm, "gi");
+
+    const searchReducer = groups.reduce((init, group) => {
+      if (group.groupName && group.groupName.match(regex)) {
+        init.push(group);
+      }
+
+      return init;
+    }, []);
+
+    this.setState({ searchResults: searchReducer, searchLoading: false });
+  };
   render() {
-    console.log(this.state.groups);
     return (
       <>
         <div className="d-flex justify-content-between align-items-center mt-5 text-white">
@@ -163,12 +188,41 @@ export class Groups extends Component {
             </Modal.Footer>
           </Modal>
         </div>
-
+        <Form.Control
+          type="text"
+          placeholder="search"
+          name="searchMessage"
+          className="mt-2"
+          onChange={this.handleSearchTerm}
+        />
         <div
           style={{ height: "120px", overflowY: "scroll", background: "white" }}
           className="mt-3"
         >
-          {this.state.groups
+          {this.state.searchTerm
+            ? this.state.searchResults.map((item, k) => {
+                return (
+                  <ListGroup
+                    key={k}
+                    className="list-group-flush"
+                    style={{ background: "none" }}
+                  >
+                    <ListGroup.Item
+                      className={
+                        item.id === this.state.active
+                          ? "menu_item active"
+                          : "menu_item"
+                      }
+                      onClick={() => {
+                        this.groupChange(item);
+                      }}
+                    >
+                      <h6>{item.groupName}</h6>{" "}
+                    </ListGroup.Item>
+                  </ListGroup>
+                );
+              })
+            : this.state.groups
             ? this.state.groups.map((item, k) => {
                 return (
                   <ListGroup
